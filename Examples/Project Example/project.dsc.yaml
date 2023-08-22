@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+# Reference: https://github.com/apache/echarts#build
+properties:
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: npm
+      directives:
+        description: Install Node.js
+        allowPrerelease: true
+      settings:
+        id: OpenJS.NodeJS
+        source: winget
+    - resource: NpmDsc/NpmInstall
+      dependsOn:
+        - npm
+      directives:
+        description: Run 'npm install'
+        allowPrerelease: true
+      settings:
+        PackageDirectory: '${WinGetConfigRoot}\..\' 
+    - resource: NpmDsc/NpmPackage
+      directives:
+        description: Install grunt-cli globally
+        allowPrerelease: true
+      settings:
+        Name: 'grunt-cli'
+        Global: true
+        Ensure: 'Present'
+        PackageDirectory: '${WinGetConfigRoot}\..\'
+  configurationVersion: 0.2.0

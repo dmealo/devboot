@@ -31,6 +31,63 @@ properties:
       settings:
         productId: Microsoft.VisualStudio.Product.Community
         channelId: VisualStudio.17.Release
-        vsConfigFile: '${WinGetConfigRoot}\..\.vsconfig\.vsconfig'
+        vsConfigFile: '${WinGetConfigRoot}\..\.vsconfig\VS2022\.vsconfig'
         includeRecommended: true
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Git
+      directives:
+        description: Install Git
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: VSCode
+      directives:
+        description: Install Visual Studio Code
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudioCode
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install PowerShell 7
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Docker Desktop
+      directives:
+        description: Install Docker Desktop
+        allowPrerelease: false
+      settings:
+        id: Docker.DockerDesktop
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: NVM
+      directives:
+        description: Install NVM for Windows
+        allowPrerelease: true
+      settings:
+        id: CoreyButler.NVMforWindows
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: OpenLens
+      directives:
+        description: Install OpenLens
+        allowPrerelease: true
+      settings:
+        id: MuhammedKalkan.OpenLens
+        source: winget
+    # Install PowerToys
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: PowerToys
+      directives:
+        description: Install PowerToys
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerToys
+        source: winget
+
   configurationVersion: 0.2.0
