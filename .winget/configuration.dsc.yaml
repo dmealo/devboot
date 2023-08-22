@@ -115,5 +115,14 @@ properties:
       settings:
         id: Microsoft.PowerToys
         source: winget
+    # Install Beyond Compare
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: BeyondCompare
+      directives:
+        description: Install Beyond Compare
+        allowPrerelease: true
+      settings:
+        id: ScooterSoftware.BeyondCompare
+        source: winget
 
   configurationVersion: 0.2.0
