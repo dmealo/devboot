@@ -60,7 +60,7 @@ properties:
       id: Docker Desktop
       directives:
         description: Install Docker Desktop
-        allowPrerelease: false
+        allowPrerelease: true
       settings:
         id: Docker.DockerDesktop
         source: winget
@@ -80,7 +80,6 @@ properties:
       settings:
         id: MuhammedKalkan.OpenLens
         source: winget
-    # Install PowerToys
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: PowerToys
       directives:
