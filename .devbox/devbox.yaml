@@ -1,0 +1,17 @@
+name: dev
+image: microsoftvisualstudio_visualstudioplustools_vs-2022-pro-general-win11-m365-gen2 # Validate switch to Pro
+hostInformation: general_a_8c32gb256ssd_v1
+
+setupTasks:   
+- task: choco
+  inputs:
+    install: azd
+- task: install-vs-extension
+  inputs:
+    extension: GitHub.copilotvs
+# winget configure
+- task: winget
+  inputs:
+    action: configure
+    source: winget
+    settings: '${WinGetConfigRoot}\..\.winget\configuration.dsc.yaml'
