@@ -50,6 +50,7 @@ properties:
         id: Microsoft.VisualStudioCode
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: PowerShell7
       directives:
         description: Install PowerShell 7
         allowPrerelease: true
@@ -63,6 +64,32 @@ properties:
         allowPrerelease: true
       settings:
         id: Docker.DockerDesktop
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Azure CLI
+      directives:
+        description: Install Azure CLI
+        allowPrerelease: true
+      settings:
+        id: Microsoft.AzureCLI
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: GitHub CLI
+      directives:
+        description: Install GitHub CLI
+        allowPrerelease: true
+      settings:
+        id: GitHub.cli
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      dependsOn:
+        - PowerShell7
+      id: Oh My Posh
+      directives:
+        description: Install Oh My Posh
+        allowPrerelease: true
+      settings:
+        id: JanDeDobbeleer.OhMyPosh
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: NVM
