@@ -92,16 +92,6 @@ properties:
         id: JanDeDobbeleer.OhMyPosh
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
-      dependsOn:
-        - PowerShell7
-      id: PoshGit
-      directives:
-        description: Install PoshGit
-        allowPrerelease: true
-      settings:
-        id: Microsoft.PowerShell.PoshGit
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: NVM
       directives:
         description: Install NVM for Windows
@@ -125,7 +115,6 @@ properties:
       settings:
         id: Microsoft.PowerToys
         source: winget
-    # Install Beyond Compare
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: BeyondCompare
       directives:
