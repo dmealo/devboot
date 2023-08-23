@@ -121,7 +121,7 @@ properties:
         description: Install Beyond Compare
         allowPrerelease: true
       settings:
-        id: ScooterSoftware.BeyondCompare
+        id: ScooterSoftware.BeyondCompare4
         source: winget
 
   configurationVersion: 0.2.0
