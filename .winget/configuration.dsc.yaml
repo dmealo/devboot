@@ -123,5 +123,21 @@ properties:
       settings:
         id: ScooterSoftware.BeyondCompare4
         source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Notepad++
+      directives:
+        description: Install Notepad++
+        allowPrerelease: true
+      settings:
+        id: Notepad++.Notepad++
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Chrome
+      directives:
+        description: Install Chrome
+        allowPrerelease: true
+      settings:
+        id: Google.Chrome
+        source: winget
 
   configurationVersion: 0.2.0
