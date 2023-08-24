@@ -1,4 +1,4 @@
-# devboot
+# devboot - WinGet Configuration Baseline Setup and Run
 
 # Purpose
 tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration]([url](https://learn.microsoft.com/en-us/windows/package-manager/configuration/)) and/or [Dev Home]([url](https://learn.microsoft.com/en-us/windows/dev-home/setup)) app
@@ -14,6 +14,8 @@ You can run the config from the command line pretty easily, but we could also ad
 Alternatively, users could install the new Dev Home app from Windows Store, then add their GitHub account, clone the repo in the app (along with a list of other repos in bulk if desired), and use the Machine Configuration > Configuration File option there to run the winget config with a GUI. 
 
 This could/should be very useful to help save probably hours per developer reinstalling software for the when workstations needed to be reset/reimaged or for new machine setups. I will write up some simple instructions for the Dev Home method and share those and the command line method in the Usage section below soon. 
+
+> Note: Individual projects can have their own Winget Configurations and .vsconfig's as well for project-specific tooling, prerequisites, but this allows us to get a good baseline install of the most commonly used development tools installed and managed here so that those do not need to be managed in each project - just the few specifics, if needed. :)
 
 # Usage
 
