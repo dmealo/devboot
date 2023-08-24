@@ -19,7 +19,9 @@ This could/should be very useful to help save probably hours per developer reins
 
 # Usage
 
-## Scripted, one-liner Winget Configuration Setup and Run (coming soon)
+## Scripted, one-liner Winget Configuration Setup and Run
+You can run the script (in an admin-elevated PowerShell session) like this:<br/>
+`Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
 
 ## Manual Winget Configuration Setup and Run
 1. Install the latest winget "-preview" version from https://aka.ms/getwingetpreview
