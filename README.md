@@ -15,7 +15,7 @@ Alternatively, users could install the new Dev Home app from Windows Store, then
 
 This could/should be very useful to help save probably hours per developer reinstalling software for the when workstations needed to be reset/reimaged or for new machine setups. I will write up some simple instructions for the Dev Home method and share those and the command line method in the Usage section below soon. 
 
-> Note: Individual projects can have their own Winget Configurations and .vsconfig's as well for project-specific tooling, prerequisites, but this allows us to get a good baseline install of the most commonly used development tools installed and managed here so that those do not need to be managed in each project - just the few specifics, if needed. :)
+> Note: Individual projects can have their own Winget Configurations and .vsconfig's (VS will even feature these in a popup in the application when present) as well for project-specific tooling, prerequisites, but this allows us to get a good baseline install of the most commonly used development tools installed and managed here so that those do not need to be managed in each project - just the few specifics, if needed. :)
 
 # Usage
 
