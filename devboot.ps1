@@ -28,7 +28,8 @@ $latestPreviewRelease = $releases | Where-Object { $_.prerelease -eq $true } | S
 # Skip installation if latest already installed
 $wingetCurrentVersion = winget --version
 if ($wingetCurrentVersion -eq $latestPreviewRelease) {
-    Write-Host "Latest version of winget preview already installed: $wingetCurrentVersion"
+    Write-Host "Latest version of winget preview already installed (ignore following settings error prefixing version number display `
+    if settings not initialized by a previous run): $wingetCurrentVersion"
 }
 else {
     # Install latest version of winget preview
@@ -39,18 +40,29 @@ else {
 }
 
 # Check/add 'configuration' experimental setting to winget settings file
-
-$wingetSettingsFile = Get-ChildItem -Path $env:UserProfile\AppData\Local\Packages\Microsoft.DesktopAppInstaller*\LocalState\settings.json | Select-Object -ExpandProperty FullName
+$wingetSettingsFilePath = "$env:LocalAppData\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\"
+$settingsFileName = "settings.json"
+$wingetSettingsFilePathFull = $wingetSettingsFilePath + $settingsFileName
+$wingetSettingsFile = Get-ChildItem -Path $env:LocalAppData\Packages\Microsoft.DesktopAppInstaller*\LocalState\settings.json | Select-Object -ExpandProperty FullName
+if ($null -eq $wingetSettingsFile) {
+    Write-Host "Could not find winget settings file; creating a new one"
+    # Create new empty winget settings file
+    New-Item -Path $wingetSettingsFilePath -Name $settingsFileName -ItemType File
+    $fileModel = New-Object -TypeName PSObject
+    $fileModel | Add-Member -MemberType NoteProperty -Name '$schema' -Value 'https://aka.ms/winget-settings.schema.json'
+    $fileModel | ConvertTo-Json | Set-Content $wingetSettingsFilePathFull
+    $wingetSettingsFile = Get-ChildItem -Path $wingetSettingsFilePathFull
+}
 $settings = Get-Content -Raw $wingetSettingsFile | ConvertFrom-Json
 $experimentalFeaturesSettings = $settings.experimentalFeatures
 if ($null -eq $experimentalFeaturesSettings) {
-    $settings | Add-Member -MemberType NoteProperty -Name experimentalFeatures -Value ''
-    $settings.experimentalFeatures | Add-Member -MemberType NoteProperty -Name configuration -Value true
+    $settings | Add-Member -MemberType NoteProperty -Name experimentalFeatures -Value @{}
+    $settings.experimentalFeatures = @{'configuration'=$true}
 }
 else {
     $experimentalFeatures = $settings.experimentalFeatures
     if ($null -eq $experimentalFeatures.configuration) {
-        $experimentalFeatures | Add-Member -MemberType NoteProperty -Name configuration -Value true
+        $experimentalFeatures | Add-Member -MemberType NoteProperty -Name configuration -Value $true
     }
     else {
         if ($experimentalFeatures.configuration -eq $false) {
