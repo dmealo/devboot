@@ -1,5 +1,6 @@
 # devboot - WinGet Configuration Baseline Setup and Run
-
+#tl;dr Usage
+Run the one-liner in [Scripted, one-liner Winget Configuration Setup and Run](#scripted-one-liner-winget-configuration-setup-and-run)
 # Purpose
 tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration]([url](https://learn.microsoft.com/en-us/windows/package-manager/configuration/)) and/or [Dev Home]([url](https://learn.microsoft.com/en-us/windows/dev-home/setup)) app
 
@@ -18,10 +19,12 @@ This could/should be very useful to help save probably hours per developer reins
 > Note: Individual projects can have their own Winget Configurations and .vsconfig's (VS will even feature these in a popup in the application when present) as well for project-specific tooling, prerequisites, but this allows us to get a good baseline install of the most commonly used development tools installed and managed here so that those do not need to be managed in each project - just the few specifics, if needed. :)
 
 # Usage
-
+> Note: Winget Configuration, as Desired State Configuration (DSC), is idempotent, so you can rerun it without affecting the already-installed software.
 ## Scripted, one-liner Winget Configuration Setup and Run
-You can run the script (in an admin-elevated PowerShell session) like this:<br/>
+1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
+2. Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
+3. The folder with the logs from the run will be displayed after the run is completed. 
 
 ## Manual Winget Configuration Setup and Run
 1. Install the latest winget "-preview" version from https://aka.ms/getwingetpreview
