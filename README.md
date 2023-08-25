@@ -33,5 +33,9 @@ This could/should be very useful to help save probably hours per developer reins
 4. Run winget configure -f .winget\configuration.dsc.yaml --verbose from repo root
 5. If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
 
+# Troubleshooting
+ - Error running script: "...cannot be loaded because running scripts is disabled on this system..."
+   - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
+
 # Software Suggestions, Ideas
 Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion]([url](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
