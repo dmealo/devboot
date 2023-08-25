@@ -38,4 +38,4 @@ This could/should be very useful to help save probably hours per developer reins
    - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
 
 # 🙏 Software Suggestions, Ideas
-Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion]([url](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
+Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
