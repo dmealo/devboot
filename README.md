@@ -1,5 +1,5 @@
 # devboot - WinGet Configuration Baseline Setup and Run
-# tl;dr Usage
+# 🏃 tl;dr Usage
 Run the one-liner in [Scripted, one-liner Winget Configuration Setup and Run](#scripted-one-liner-winget-configuration-setup-and-run)
 # Purpose
 tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration]([url](https://learn.microsoft.com/en-us/windows/package-manager/configuration/)) and/or [Dev Home]([url](https://learn.microsoft.com/en-us/windows/dev-home/setup)) app
@@ -20,22 +20,22 @@ This could/should be very useful to help save probably hours per developer reins
 
 # Usage
 > Note: Winget Configuration, as Desired State Configuration (DSC), is idempotent, so you can rerun it without affecting the already-installed software.
-## Scripted, one-liner Winget Configuration Setup and Run
+## 🤖 Scripted, one-liner Winget Configuration Setup and Run
 1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
 2. Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
 3. The folder with the logs from the run will be displayed after the run is completed. 
 
-## Manual Winget Configuration Setup and Run
+## 💪 Manual Winget Configuration Setup and Run
 1. Install the latest winget "-preview" version from https://aka.ms/getwingetpreview
 2. Enable the winget experimental feature "Configuration" with the brief steps at https://learn.microsoft.com/en-us/windows/package-manager/configuration/#enable-the-winget-configuration-experimental-configuration-preview-feature
 3. Clone devboot repo
 4. Run winget configure -f .winget\configuration.dsc.yaml --verbose from repo root
 5. If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
 
-# Troubleshooting
+# 🆘 Troubleshooting
  - Error running script: "...cannot be loaded because running scripts is disabled on this system..."
    - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
 
-# Software Suggestions, Ideas
+# 🙏 Software Suggestions, Ideas
 Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion]([url](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
