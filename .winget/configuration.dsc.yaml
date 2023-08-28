@@ -108,6 +108,14 @@ properties:
         id: MuhammedKalkan.OpenLens
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: k9s
+      directives:
+        description: Install k9s
+        allowPrerelease: true
+      settings:
+        id: Derailed.k9s
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: PowerToys
       directives:
         description: Install PowerToys
