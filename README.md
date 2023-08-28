@@ -1,5 +1,5 @@
 # devboot - WinGet Configuration Baseline BootStrap/Setup and Run
-# 🏃 tl;dr Usage
+# 🏃tl;dr Usage
 Run the one-liner in [Scripted, one-liner Winget Configuration Setup and Run](#-scripted-one-liner-winget-configuration-setup-and-run)
 # Purpose
 tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration]([url](https://learn.microsoft.com/en-us/windows/package-manager/configuration/)) and/or [Dev Home]([url](https://learn.microsoft.com/en-us/windows/dev-home/setup)) app
