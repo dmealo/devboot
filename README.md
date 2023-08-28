@@ -2,7 +2,7 @@
 # 🏃tl;dr Usage
 Run the one-liner in [Scripted, one-liner Winget Configuration Setup and Run](#-scripted-one-liner-winget-configuration-setup-and-run)
 # Purpose
-tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration]([url](https://learn.microsoft.com/en-us/windows/package-manager/configuration/)) and/or [Dev Home]([url](https://learn.microsoft.com/en-us/windows/dev-home/setup)) app
+tl;dr: Auto Bulk Software Installs for Dev Workstations via [Winget Configuration](https://learn.microsoft.com/en-us/windows/package-manager/configuration/) and/or [Dev Home](https://learn.microsoft.com/en-us/windows/dev-home/setup) app
 
 Microsoft announced a nice new way of doing desired state configuration (DSC) for workstations via pretty simple YAML code/configs - especially for dev systems - at Build, called winget configuration and in tests it's pretty cool. In other words, it can install a list of commonly needed development software with a few clicks in a new app from MSFT called Dev Home or a command from a terminal. 
 
