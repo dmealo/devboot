@@ -20,6 +20,9 @@ This could/should be very useful to help save probably hours per developer reins
 
 # Usage
 > Note: Winget Configuration, as Desired State Configuration (DSC), is idempotent, so you can rerun it without affecting the already-installed software.
+
+## Prerequisites
+- Appropriate PowerShell ExecutionPolicy (example: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.)
 ## 🤖 Scripted, one-liner Winget Configuration Setup and Run
 1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
@@ -32,6 +35,9 @@ This could/should be very useful to help save probably hours per developer reins
 3. Clone devboot repo
 4. Run winget configure -f .winget\configuration.dsc.yaml --verbose from repo root
 5. If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
+
+# 📝 Notes & Known Issues
+- Docker Desktop has been moved for now to an alternative configuration file, `configuration.dsc.withDockerDesktop.yaml`, since Docker Desktop for Windows Containers requires Hyper-V and related configurations to function which the Winget Configuration method of running the setup for does not currently seem to enable. This means that one would likely need to do so [manually](https://docs.docker.com/desktop/troubleshoot/topics/#hyper-v) either before or after running devboot or Winget configure using the included configuration. This nullifies the time savings and convenience, so it is recommended to simply [install Docker Desktop manually](https://docs.docker.com/desktop/install/windows-install/) and let it configure it's prerequisites rather than have it included in this configuration.
 
 # 🆘 Troubleshooting
  - Error running script: "...cannot be loaded because running scripts is disabled on this system..."
