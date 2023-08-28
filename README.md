@@ -1,4 +1,4 @@
-# devboot - WinGet Configuration Baseline Setup and Run
+# devboot - WinGet Configuration Baseline BootStrap/Setup and Run
 # 🏃 tl;dr Usage
 Run the one-liner in [Scripted, one-liner Winget Configuration Setup and Run](#-scripted-one-liner-winget-configuration-setup-and-run)
 # Purpose
