@@ -33,7 +33,7 @@ This could/should be very useful to help save probably hours per developer reins
 1. Install the latest winget "-preview" version from https://aka.ms/getwingetpreview
 2. Enable the winget experimental feature "Configuration" with the brief steps at https://learn.microsoft.com/en-us/windows/package-manager/configuration/#enable-the-winget-configuration-experimental-configuration-preview-feature
 3. Clone devboot repo
-4. Run winget configure -f .winget\configuration.dsc.yaml --verbose from repo root
+4. Run `winget configure -f .winget\configuration.dsc.yaml --verbose` from repo root
 5. If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
 
 # 📝 Notes & Known Issues
