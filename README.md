@@ -8,13 +8,11 @@ Microsoft announced a nice new way of doing desired state configuration (DSC) fo
 
 We also can call it from Dev Box (Windows development workstation in Azure accessed via Remote Desktop, etc) confguration which was also announced at Build and is in private preview now. 
 
-I set up this repo with configs for all of this and worked out some issues and I think it works well. 
-
-You can run the config from the command line pretty easily, but we could also add that to a setup script for this whole thing, too since there's a few steps to being able to use this since it's in preview right now. 
+I set up this repo with configs for all of this and worked out some issues and I think it works well. The `devboot.ps1` script automates the steps listed in Microsoft's Winget Congiguration setup (also listed below in Manual Setup) since their tool is in preview at the time of writing and so requires these additional opt-in steps.
 
 Alternatively, users could install the new Dev Home app from Windows Store, then add their GitHub account, clone the repo in the app (along with a list of other repos in bulk if desired), and use the Machine Configuration > Configuration File option there to run the winget config with a GUI. 
 
-This could/should be very useful to help save probably hours per developer reinstalling software for the when workstations needed to be reset/reimaged or for new machine setups. I will write up some simple instructions for the Dev Home method and share those and the command line method in the Usage section below soon. 
+This could/should be very useful to help save probably hours per developer reinstalling software when workstations need to be reset/reimaged or for new machine setups.
 
 > Note: Individual projects can have their own Winget Configurations and .vsconfig's (VS will even feature these in a popup in the application when present) as well for project-specific tooling, prerequisites, but this allows us to get a good baseline install of the most commonly used development tools installed and managed here so that those do not need to be managed in each project - just the few specifics, if needed. :)
 
