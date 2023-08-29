@@ -65,14 +65,6 @@ properties:
       settings:
         id: Microsoft.WindowsTerminal
         source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: Docker Desktop
-      directives:
-        description: Install Docker Desktop
-        allowPrerelease: true
-      settings:
-        id: Docker.DockerDesktop
-        source: winget
     # - resource: Microsoft.WinGet.DSC/WinGetPackage
     #   id: Docker Desktop
     #   directives:
