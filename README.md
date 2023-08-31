@@ -8,7 +8,7 @@ Microsoft announced a nice new way of doing desired state configuration (DSC) fo
 
 We also can call it from Dev Box (Windows development workstation in Azure accessed via Remote Desktop, etc) confguration which was also announced at Build and is in private preview now. 
 
-I set up this repo with configs for all of this and worked out some issues and I think it works well. The `devboot.ps1` script automates the steps listed in Microsoft's Winget Congiguration setup (also listed below in Manual Setup) since their tool is in preview at the time of writing and so requires these additional opt-in steps.
+This repo contains configs for all of this as well as a `devboot.ps1` script that automates the steps listed in Microsoft's Winget Congiguration setup (also listed below in Manual Setup) since their tool is in preview at the time of writing and so requires these additional opt-in steps.
 
 Alternatively, users could install the new Dev Home app from Windows Store, then add their GitHub account, clone the repo in the app (along with a list of other repos in bulk if desired), and use the Machine Configuration > Configuration File option there to run the winget config with a GUI. 
 
@@ -21,6 +21,7 @@ This could/should be very useful to help save probably hours per developer reins
 
 ## Prerequisites
 - Appropriate PowerShell ExecutionPolicy (example: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.)
+- 
 ## 🤖 Scripted, one-liner Winget Configuration Setup and Run
 1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
@@ -31,15 +32,26 @@ This could/should be very useful to help save probably hours per developer reins
 1. Install the latest winget "-preview" version from https://aka.ms/getwingetpreview
 2. Enable the winget experimental feature "Configuration" with the brief steps at https://learn.microsoft.com/en-us/windows/package-manager/configuration/#enable-the-winget-configuration-experimental-configuration-preview-feature
 3. Clone devboot repo
-4. Run `winget configure -f .winget\configuration.dsc.yaml --verbose` from repo root
-5. If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
+4. Run `winget configure -f .winget\configuration.dsc.yaml --verbose` from repo root from an admin-elevated PowerShell session
 
 # 📝 Notes & Known Issues
+- If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)
 - Docker Desktop has been moved for now to an alternative configuration file, `configuration.dsc.withDockerDesktop.yaml`, since Docker Desktop for Windows Containers requires Hyper-V and related configurations to function which the Winget Configuration method of running the setup for does not currently seem to enable. This means that one would likely need to do so [manually](https://docs.docker.com/desktop/troubleshoot/topics/#hyper-v) either before or after running devboot or Winget configure using the included configuration. This nullifies the time savings and convenience, so it is recommended to simply [install Docker Desktop manually](https://docs.docker.com/desktop/install/windows-install/) and let it configure it's prerequisites rather than have it included in this configuration.
 
 # 🆘 Troubleshooting
- - Error running script: "...cannot be loaded because running scripts is disabled on this system..."
-   - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
+- Error running script: "...cannot be loaded because running scripts is disabled on this system..."
+  - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
 
 # 🙏 Software Suggestions, Ideas
 Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
+
+# ❔ FAQ
+- How can I deal with some unwanted apps in the configuration?
+  - Uninstalling them after configuration is complete is probably the quickest
+   <br/>OR
+  - Edit the configuration file and run manually after Winget setup:
+    - Run the `devboot.ps1` script to set up and opt into Winget Configuration, but cancel the script running when it prompts you to approve installation, then do one of the following: 
+    - Edit the `<SYSTEMDRIVE>:\devboot\.winget\configuration.dsc.yaml`
+     <br/>OR
+    - Comment or remove the unwanted apps from a local copy of the `.winget\configuration.dsc.yaml` file in a locally cloned copy of the repo
+    - Then run `winget configure -f .winget\configuration.dsc.yaml` from the repo root
