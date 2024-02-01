@@ -50,12 +50,20 @@ properties:
         id: Microsoft.VisualStudioCode
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: PowerShell7
+      id: PowerShell
       directives:
-        description: Install PowerShell 7
+        description: Install PowerShell
         allowPrerelease: true
       settings:
         id: Microsoft.PowerShell
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Windows Terminal
+      directives:
+        description: Install Windows Terminal
+        allowPrerelease: true
+      settings:
+        id: Microsoft.WindowsTerminal
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: Docker Desktop
@@ -83,7 +91,7 @@ properties:
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       dependsOn:
-        - PowerShell7
+        - PowerShell
       id: Oh My Posh
       directives:
         description: Install Oh My Posh
@@ -100,12 +108,37 @@ properties:
         id: CoreyButler.NVMforWindows
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: kubectl
+      directives:
+        description: Install kubectl
+        allowPrerelease: true
+      settings:
+        id: Kubernetes.kubectl
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: OpenLens
       directives:
         description: Install OpenLens
         allowPrerelease: true
       settings:
         id: MuhammedKalkan.OpenLens
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: k9s
+      directives:
+        description: Install k9s
+        allowPrerelease: true
+      settings:
+        id: Derailed.k9s
+        source: winget
+    # Dev Home
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: DevHome
+      directives:
+        description: Install Dev Home
+        allowPrerelease: true
+      settings:
+        id: Microsoft.DevHome
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: PowerToys
@@ -138,6 +171,14 @@ properties:
         allowPrerelease: true
       settings:
         id: Google.Chrome
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Firefox
+      directives:
+        description: Install Firefox
+        allowPrerelease: true
+      settings:
+        id: 9NZVDKPMR9RD
         source: winget
 
   configurationVersion: 0.2.0

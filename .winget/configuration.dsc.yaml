@@ -107,7 +107,6 @@ properties:
       settings:
         id: CoreyButler.NVMforWindows
         source: winget
-    # Install kubectl since Docker Desktop is not installed in this configuration
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: kubectl
       directives:
@@ -172,6 +171,14 @@ properties:
         allowPrerelease: true
       settings:
         id: Google.Chrome
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Firefox
+      directives:
+        description: Install Firefox
+        allowPrerelease: true
+      settings:
+        id: 9NZVDKPMR9RD
         source: winget
 
   configurationVersion: 0.2.0
