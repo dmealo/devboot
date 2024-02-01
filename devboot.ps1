@@ -37,6 +37,7 @@ else {
     Start-BitsTransfer -Source $downloadUrl -Destination Microsoft.DesktopAppInstaller.msixbundle
     $wingetPreviewInstaller = Get-ChildItem -Filter Microsoft.DesktopAppInstaller*.msixbundle | Sort-Object LastWriteTime | Select-Object -Last 1 | Select-Object -ExpandProperty FullName
     Add-AppxPackage -Path $wingetPreviewInstaller
+    Pop-Location
 }
 
 # # Deprecated by general release of WinGet Configurations without requiring enablement of experimental settings
