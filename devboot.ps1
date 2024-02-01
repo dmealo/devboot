@@ -24,11 +24,13 @@ $latestRelease = Invoke-RestMethod -Uri https://api.github.com/repos/microsoft/w
 
 # Skip installation if latest already installed
 $wingetCurrentVersion = winget --version
-if ($wingetCurrentVersion -eq $latestRelease) {
-    Write-Host "Latest winget release version already installed (ignore following settings error prefixing version number display `
+if ($wingetCurrentVersion -ge $latestRelease) {
+    Write-Host "Latest winget release version ($latestRelease) already installed (installed version: $wingetCurrentVersion; ignore following settings error prefixing version number display `
     if settings not initialized by a previous run): $wingetCurrentVersion"
 }
 else {
+    # Display latest winget release version and current installed version
+    Write-Host "Latest winget release version: $latestRelease; installed version: $wingetCurrentVersion"
     # Install latest winget release version
     Push-Location $devbootPath\.winget\install
     $downloadUrl = (([System.Net.HttpWebRequest]::Create('https://github.com/microsoft/winget-cli/releases/latest/').GetResponse().ResponseUri.AbsoluteUri) -Replace 'tag', 'download') + '/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
