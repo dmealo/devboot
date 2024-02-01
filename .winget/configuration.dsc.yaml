@@ -50,9 +50,9 @@ properties:
         id: Microsoft.VisualStudioCode
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: PowerShell7
+      id: PowerShell
       directives:
-        description: Install PowerShell 7
+        description: Install PowerShell
         allowPrerelease: true
       settings:
         id: Microsoft.PowerShell
@@ -91,7 +91,7 @@ properties:
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       dependsOn:
-        - PowerShell7
+        - PowerShell
       id: Oh My Posh
       directives:
         description: Install Oh My Posh
@@ -106,6 +106,15 @@ properties:
         allowPrerelease: true
       settings:
         id: CoreyButler.NVMforWindows
+        source: winget
+    # Install kubectl since Docker Desktop is not installed in this configuration
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: kubectl
+      directives:
+        description: Install kubectl
+        allowPrerelease: true
+      settings:
+        id: Kubernetes.kubectl
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: OpenLens
