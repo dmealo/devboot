@@ -22,13 +22,35 @@ This could/should be very useful to help save probably hours per developer reins
 > Note: Winget Configuration, as Desired State Configuration (DSC), is idempotent, so you can rerun it without affecting the already-installed software.
 
 ## Prerequisites
+- PowerShell 7+
 - Appropriate PowerShell ExecutionPolicy (example: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.)
+- Git, when running from private repo
  
 ## 🤖 Scripted, one-liner Winget Configuration Setup and Run
-1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
+### From a public repo:
+ - Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
-2. Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
-3. The folder with the logs from the run will be displayed after the run is completed. 
+### From a private repo:
+ - Run the script (in an admin-elevated PowerShell session) like this:<br/>
+```Start-Process "https://github.valtech.com"; `
+Read-Host -Prompt "Log into GitHub in browser and then press Enter to continue"; `
+Install-Script Install-Git -Scope CurrentUser -Force; `
+Install-Git.ps1; `
+$env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ";" + [System.Environment]::GetEnvironmentVariable('Path', 'User'); `
+$devbootPath = "$env:SystemDrive:\valtech-devboot"; `
+if (!(Test-Path $devbootPath)) { `
+    mkdir $devbootPath; `
+} `
+else { `
+    Remove-Item -Path $devbootPath -Recurse -Force; `
+    mkdir $devbootPath; `
+} `
+git clone "https://github.com/US-Baltimore-Valtech/internal-vbalt-ps-modules.git" "C:\valtech-devboot"; `
+Push-Location "C:\valtech-devboot"; `
+.\publish-module.ps1```
+### Then, from either:
+- Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
+- The folder with the logs from the run will be displayed after the run is completed. 
 
 ## 💪 Manual Winget Configuration Setup and Run
 1. Clone devboot repo
