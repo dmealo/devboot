@@ -26,7 +26,7 @@ This could/should be very useful to help save probably hours per developer reins
  
 ## 🤖 Scripted, one-liner Winget Configuration Setup and Run
 1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
-`Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
+`Start-BitsTransfer -Source "https://raw.githubusercontent.com/dmealo/devboot/main/devboot.ps1"; .\devboot.ps1`
 2. Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
 3. The folder with the logs from the run will be displayed after the run is completed. 
 
@@ -43,7 +43,7 @@ This could/should be very useful to help save probably hours per developer reins
   - Solution: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.
 
 # 🙏 Software Suggestions, Ideas
-Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion](https://github.com/BerndtGroup/devboot/discussions/categories/ideas)
+Please make software installation suggestions and other ideas for devboot in the [Ideas Discussion](https://github.com/dmealo/devboot/discussions/categories/ideas)
 
 # ❔ FAQ
 - How can I deal with some unwanted apps in the configuration?

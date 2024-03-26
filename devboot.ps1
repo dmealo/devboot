@@ -1,5 +1,6 @@
 #requires -RunAsAdministrator
 # Check/create/switch to devboot folder
+$userorg = "dmealo"
 $drive = Get-PsDrive -PsProvider FileSystem | Select-Object -First 1 | Select-Object -ExpandProperty Name
 $devbootPath = $drive + ':\devboot'
 if (!(Test-Path $devbootPath)) {
@@ -76,8 +77,8 @@ else {
 
 # Download winget configuration and dependencies (.vsconfig, etc.)
 Push-Location $devbootPath
-Start-BitsTransfer -Source https://raw.githubusercontent.com/BerndtGroup/devboot/main/.vsconfig/VS2022/.vsconfig -Destination .vsconfig/VS2022/.vsconfig
-Start-BitsTransfer -Source https://raw.githubusercontent.com/BerndtGroup/devboot/main/.winget/configuration.dsc.yaml -Destination .winget/configuration.dsc.yaml
+Start-BitsTransfer -Source https://raw.githubusercontent.com/userorg/devboot/main/.vsconfig/VS2022/.vsconfig -Destination .vsconfig/VS2022/.vsconfig
+Start-BitsTransfer -Source https://raw.githubusercontent.com/userorg/devboot/main/.winget/configuration.dsc.yaml -Destination .winget/configuration.dsc.yaml
 # Run winget configure using configuration file with verbose output, and opening logs folder after run
 # Note: using --disable-interactivity to interactive prompts other than agreeing to configuration warning causes Notepad++ and possibly other apps to fail to install, so removed for now
 & winget configure -f .winget\configuration.dsc.yaml --verbose --logs
