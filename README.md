@@ -32,12 +32,13 @@ This could/should be very useful to help save probably hours per developer reins
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/berndtgroup/devboot/main/devboot.ps1"; .\devboot.ps1`
 ### From a private repo:
  - Run the script (in an admin-elevated PowerShell session) like this:<br/>
-```Start-Process "https://github.valtech.com"; `
+```$userorg = "userorg"; ` 
+Start-Process "https://github.$userorg.com"; `
 Read-Host -Prompt "Log into GitHub in browser and then press Enter to continue"; `
 Install-Script Install-Git -Scope CurrentUser -Force; `
 Install-Git.ps1; `
 $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ";" + [System.Environment]::GetEnvironmentVariable('Path', 'User'); `
-$devbootPath = "$env:SystemDrive:\valtech-devboot"; `
+$devbootPath = "$env:SystemDrive:\$userorg-devboot"; `
 if (!(Test-Path $devbootPath)) { `
     mkdir $devbootPath; `
 } `
@@ -45,8 +46,8 @@ else { `
     Remove-Item -Path $devbootPath -Recurse -Force; `
     mkdir $devbootPath; `
 } `
-git clone "https://github.com/US-Baltimore-Valtech/internal-vbalt-ps-modules.git" "C:\valtech-devboot"; `
-Push-Location "C:\valtech-devboot"; `
+git clone "https://github.com/$userorg/devboot.git" "C:\$userorg-devboot"; ``
+Push-Location "C:\$userorg-devboot"; `
 .\publish-module.ps1```
 ### Then, from either:
 - Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
