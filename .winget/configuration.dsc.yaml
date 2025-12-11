@@ -131,15 +131,6 @@ properties:
       settings:
         id: Derailed.k9s
         source: winget
-    # Dev Home
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: DevHome
-      directives:
-        description: Install Dev Home
-        allowPrerelease: true
-      settings:
-        id: Microsoft.DevHome
-        source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: PowerToys
       directives:
