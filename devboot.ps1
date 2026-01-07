@@ -27,7 +27,6 @@ Runs with the Docker Desktop configuration.
 #>
 
 param(
-    [Parameter(Mandatory=$false)]
     [ValidateSet('default', 'minimal', 'withDockerDesktop')]
     [string]$Configuration = 'default'
 )
@@ -120,12 +119,13 @@ else {
 
 # Download winget configuration and dependencies (.vsconfig, etc.)
 Push-Location $devbootPath
+$baseGitHubUrl = "https://raw.githubusercontent.com/$userorg/devboot/main"
 # Download .vsconfig only for non-minimal configurations (minimal doesn't install Visual Studio)
 if ($Configuration -ne 'minimal') {
-    Start-BitsTransfer -Source https://raw.githubusercontent.com/$userorg/devboot/main/.vsconfig/VS2022/.vsconfig -Destination .vsconfig/VS2022/.vsconfig
+    Start-BitsTransfer -Source "$baseGitHubUrl/.vsconfig/VS2022/.vsconfig" -Destination .vsconfig/VS2022/.vsconfig
 }
 # Download the selected configuration file
-$configUrl = "https://raw.githubusercontent.com/$userorg/devboot/main/.winget/$selectedConfigFile"
+$configUrl = "$baseGitHubUrl/.winget/$selectedConfigFile"
 Start-BitsTransfer -Source $configUrl -Destination .winget/$selectedConfigFile
 # Run winget configure using selected configuration file with verbose output, and opening logs folder after run
 # Note: using --disable-interactivity to interactive prompts other than agreeing to configuration warning causes Notepad++ and possibly other apps to fail to install, so removed for now
