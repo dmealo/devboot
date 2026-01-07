@@ -23,16 +23,27 @@ This could/should be very useful to help save probably hours per developer reins
 
 ## Prerequisites
 - Appropriate PowerShell ExecutionPolicy (example: Set a less restrictive script execution policy like `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned`. See [more information and warnings](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) in Microsoft's PowerShell documentation.)
+
+## Configuration Options
+The `devboot.ps1` script supports multiple configuration profiles to suit different needs:
+
+- **default**: Standard configuration with Visual Studio Professional and common development tools (configuration.dsc.yaml)
+- **minimal**: Lightweight configuration without Visual Studio, includes essential tools like Git, VS Code, PowerShell, etc. (configuration.dsc.minimal.yaml)
+- **withDockerDesktop**: Full configuration including Docker Desktop (configuration.dsc.withDockerDesktop.yaml)
  
 ## 🤖 Scripted, one-liner Winget Configuration Setup and Run
 1. Run the script (in an admin-elevated PowerShell session) like this:<br/>
 `Start-BitsTransfer -Source "https://raw.githubusercontent.com/dmealo/devboot/main/devboot.ps1"; .\devboot.ps1`
+   - **For minimal configuration**: `Start-BitsTransfer -Source "https://raw.githubusercontent.com/dmealo/devboot/main/devboot.ps1"; .\devboot.ps1 -Configuration minimal`
+   - **For Docker Desktop configuration**: `Start-BitsTransfer -Source "https://raw.githubusercontent.com/dmealo/devboot/main/devboot.ps1"; .\devboot.ps1 -Configuration withDockerDesktop`
 2. Type `y` when prompted to confirm the safety of the source of the configuration you are applying.
 3. The folder with the logs from the run will be displayed after the run is completed. 
 
 ## 💪 Manual Winget Configuration Setup and Run
 1. Clone devboot repo
 2. Run `winget configure -f .winget\configuration.dsc.yaml --verbose` from repo root from an admin-elevated PowerShell session
+   - **For minimal configuration**: `winget configure -f .winget\configuration.dsc.minimal.yaml --verbose`
+   - **For Docker Desktop configuration**: `winget configure -f .winget\configuration.dsc.withDockerDesktop.yaml --verbose`
 
 # 📝 Notes & Known Issues
 - If you run into issues, you can quickly abandon this method and do a manual install of all software and only have spent 5 minutes trying to save a few hours. :)

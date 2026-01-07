@@ -1,4 +1,47 @@
 #requires -RunAsAdministrator
+
+<#
+.SYNOPSIS
+Bootstrap script to set up and run WinGet configuration for developer workstations.
+
+.DESCRIPTION
+This script automates the setup of WinGet and runs a configuration file to install development tools.
+
+.PARAMETER Configuration
+Specifies which configuration to use. Valid values are:
+- 'default': Standard configuration with Visual Studio Professional (configuration.dsc.yaml)
+- 'minimal': Minimal configuration without Visual Studio (configuration.dsc.minimal.yaml)
+- 'withDockerDesktop': Configuration including Docker Desktop (configuration.dsc.withDockerDesktop.yaml)
+
+.EXAMPLE
+.\devboot.ps1
+Runs with the default configuration.
+
+.EXAMPLE
+.\devboot.ps1 -Configuration minimal
+Runs with the minimal configuration.
+
+.EXAMPLE
+.\devboot.ps1 -Configuration withDockerDesktop
+Runs with the Docker Desktop configuration.
+#>
+
+param(
+    [Parameter(Mandatory=$false)]
+    [ValidateSet('default', 'minimal', 'withDockerDesktop')]
+    [string]$Configuration = 'default'
+)
+
+# Map configuration names to file names
+$configFiles = @{
+    'default' = 'configuration.dsc.yaml'
+    'minimal' = 'configuration.dsc.minimal.yaml'
+    'withDockerDesktop' = 'configuration.dsc.withDockerDesktop.yaml'
+}
+
+$selectedConfigFile = $configFiles[$Configuration]
+Write-Host "Using configuration: $Configuration ($selectedConfigFile)"
+
 # Check/create/switch to devboot folder
 $userorg = "dmealo"
 $drive = Get-PsDrive -PsProvider FileSystem | Select-Object -First 1 | Select-Object -ExpandProperty Name
@@ -77,9 +120,14 @@ else {
 
 # Download winget configuration and dependencies (.vsconfig, etc.)
 Push-Location $devbootPath
-Start-BitsTransfer -Source https://raw.githubusercontent.com/userorg/devboot/main/.vsconfig/VS2022/.vsconfig -Destination .vsconfig/VS2022/.vsconfig
-Start-BitsTransfer -Source https://raw.githubusercontent.com/userorg/devboot/main/.winget/configuration.dsc.yaml -Destination .winget/configuration.dsc.yaml
-# Run winget configure using configuration file with verbose output, and opening logs folder after run
+# Download .vsconfig only for non-minimal configurations (minimal doesn't install Visual Studio)
+if ($Configuration -ne 'minimal') {
+    Start-BitsTransfer -Source https://raw.githubusercontent.com/$userorg/devboot/main/.vsconfig/VS2022/.vsconfig -Destination .vsconfig/VS2022/.vsconfig
+}
+# Download the selected configuration file
+$configUrl = "https://raw.githubusercontent.com/$userorg/devboot/main/.winget/$selectedConfigFile"
+Start-BitsTransfer -Source $configUrl -Destination .winget/$selectedConfigFile
+# Run winget configure using selected configuration file with verbose output, and opening logs folder after run
 # Note: using --disable-interactivity to interactive prompts other than agreeing to configuration warning causes Notepad++ and possibly other apps to fail to install, so removed for now
-& winget configure -f .winget\configuration.dsc.yaml --verbose --logs
+& winget configure -f .winget\$selectedConfigFile --verbose --logs
 Pop-Location
