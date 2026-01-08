@@ -90,6 +90,14 @@ properties:
         id: GitHub.cli
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: GitHubCopilotCLI
+      directives:
+        description: Install GitHub Copilot CLI
+        allowPrerelease: true
+      settings:
+        id: GitHub.Copilot
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       dependsOn:
         - PowerShell
       id: Oh My Posh
